@@ -1,15 +1,10 @@
 package hiber.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "cars")
-@Getter
-@Setter
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +13,9 @@ public class Car {
     private String model;
     @Column(name = "series")
     private int series;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private User user;
 
     public Car() {
     }
@@ -47,5 +45,38 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(id, model, series);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public int getSeries() {
+        return series;
+    }
+
+    public void setSeries(int series) {
+        this.series = series;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public User setUser(User user) {
+        this.user = user;
+        return user;
     }
 }
