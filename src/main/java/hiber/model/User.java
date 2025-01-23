@@ -91,5 +91,4 @@ public class User {
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, email, car);
     }
-
 }
